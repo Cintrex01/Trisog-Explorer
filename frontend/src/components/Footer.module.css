@@ -1,0 +1,176 @@
+.container{
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+}
+
+.box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.info{
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+}
+
+.logo{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.logo h2{
+    font-size: 2rem;
+}
+
+.logo i{
+    font-size: 2rem;
+    padding-right: 0.5rem;
+}
+
+.numberLocationEmail{
+    display: flex;
+    flex-direction: column;
+}
+
+.help{
+    font-family: "Kaushan Script", sans-serif;
+    padding-bottom: 0.5rem;
+    color: #CDCDCD;
+}
+
+.callUs{
+    font-weight: 800;
+    font-size: 1rem;
+    padding-bottom: 1rem;
+}
+
+.phoneNumber{
+    color: #FD5056;
+}
+
+p.textInfo1{
+    color: #CDCDCD;
+    padding-bottom: 0.2rem;
+}
+
+p.textInfo2{
+    color: #CDCDCD;
+    padding-bottom: 2rem;
+}
+
+.socialMedia{
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.a{
+    color: #CDCDCD;
+    padding-right: 1rem;
+}
+
+.a:hover{
+    color: #adacac;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+
+.li{
+    list-style-type: none;
+    line-height: 3rem;
+    color: #CDCDCD;
+}
+
+.liHeader{
+    font-family: "Kaushan Script", sans-serif;
+    color: #fff;
+    list-style-type: none;
+    line-height: 3rem;
+}
+
+.list1,.list2,.list3{
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.list1{
+    border-left: 2px solid #232323;
+}
+
+.list3{
+    border-right: 2px solid #232323;
+}
+
+.contact{
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+}
+
+.label{
+    font-family: "Kaushan Script", sans-serif;
+    color: #CDCDCD;
+    padding-bottom: 1rem;
+}
+
+.input{
+    height: 2.5rem;
+    width: 85%;
+    border-radius: 6px;
+    padding-left: 1.7rem; 
+}
+
+.inputContainer {
+    position: relative;
+    width: 85%;
+    padding-bottom: 0.5rem;
+}
+
+.inputIcon{
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #818181;
+  pointer-events: none; 
+}
+
+.contact button{
+    height: 2.5rem;
+    width: 50%;
+    cursor: pointer;
+    color: #fff;
+    background-color: #FD5056;
+    border: none;
+    border-radius: 6px;
+}
+
+.contact button:hover{
+    background-color: #dd484d;
+}
+
+.rights{
+    padding-top: 2rem;
+    color: #CDCDCD;
+}
+
+.errorMessage {
+    color: red;
+    font-size: 0.8rem;
+    padding-bottom: 0.2rem;
+  }
