@@ -4,12 +4,13 @@ import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import SearchBar from "./components/SearchBar";
 import TourCard from "./components/TourCard";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       {/* Usar react router para navegar entre telas */}
-      <TourCard />
+      <Home />
     </>
   );
 }

@@ -1,9 +1,10 @@
 .container{
-    background-color: red;
+    background: transparent;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .box{
