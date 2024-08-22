@@ -1,0 +1,146 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: 18rem;
+    cursor: pointer;
+}
+
+.container:hover{
+    outline: 1px solid #000;
+}
+
+.imageContainer{
+  position: relative; 
+  width: 100%;
+}
+
+.image{
+  width: 100%;
+  height: auto;
+  display: block;
+  height: 12rem;
+}
+
+.heartContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 10px; 
+  right: 10px; 
+  background-color: #F7F8FA;
+  border-radius: 50%;
+  padding: 8px; 
+
+}
+
+.heart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px; 
+  color: #000;
+}
+
+.descriptionContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F8FA;
+    padding: 1rem;
+}
+
+.textContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    padding-top: 0.7rem;
+}
+
+.location{
+    font-size: 1.1rem;
+    color: #7F8699;
+}
+
+.tour{
+    color: #363D5A;
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding-top: 0.7rem;
+}
+
+.infoContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.starReviewDays{
+    display: flex;
+    flex-direction: row;
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.starContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #FD5056;
+    padding: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.star{
+    color: #fff;
+}
+
+.starNumber{
+    color: #fff;
+    padding-left: 0.2rem;
+}
+
+.reviewDays{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    color: #7F8699;
+}
+
+.review{
+    padding-left: 0.5rem;
+}
+
+.days{
+    padding-left: 0.4rem;
+}
+
+.daysContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.priceContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 0.7rem;
+    border-top: 1px solid #cbd2e2;
+}
+
+.startingFrom{
+    color: #7F8699;
+}
+
+.price{
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family: "Kaushan Script", sans-serif;
+    color: #000;
+}
