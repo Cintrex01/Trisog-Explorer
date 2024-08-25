@@ -50,7 +50,8 @@ const ToursSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     maxPeople: { type: Number, required: true },
     minAge: { type: Number, required: true },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    description: { type: String, required: true }
 });
 const Tour = mongoose.model('Tour', ToursSchema);
 exports.default = Tour;
