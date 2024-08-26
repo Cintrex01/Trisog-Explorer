@@ -41,3 +41,37 @@
     color: #fff;
     filter: none;
 }
+
+.numbersContainer{
+    padding-top: 4rem;
+    padding-bottom: 5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.numbers{
+    display: flex;
+    flex-direction: row;
+}
+
+.numberBox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.number{
+    font-family: "Kaushan Script", sans-serif;
+    font-size: 2.5rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.numberText{
+    color: #565454;
+    font-size: 1.2rem;
+    font-weight: 500;
+}

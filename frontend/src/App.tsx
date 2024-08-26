@@ -5,6 +5,7 @@ import LoginForm from "./components/LoginForm";
 import SearchBar from "./components/SearchBar";
 import TourCard from "./components/TourCard";
 import Home from "./pages/Home";
+import TitleSubHome from "./components/TitleSubHome";
 
 function App() {
   return (

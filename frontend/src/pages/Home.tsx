@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
 import styles from "./Home.module.css";
+import TitleSubHome from "../components/TitleSubHome";
 const Home = () => {
   return (
     <div>
@@ -14,6 +15,27 @@ const Home = () => {
         </h3>
       </div>
       <SearchBar />
+      <TitleSubHome title="Tours" subtitle="Most Popular Tours" />
+      <div className={styles.numbersContainer}>
+        <div className={styles.numbers}>
+          <div className={styles.numberBox}>
+            <h2 className={styles.number}>120+</h2>
+            <p className={styles.numberText}>Total Destination</p>
+          </div>
+          <div className={styles.numberBox}>
+            <h2 className={styles.number}>500+</h2>
+            <p className={styles.numberText}>Travel Packages</p>
+          </div>
+          <div className={styles.numberBox}>
+            <h2 className={styles.number}>12k+</h2>
+            <p className={styles.numberText}>Total Travelers</p>
+          </div>
+          <div className={styles.numberBox}>
+            <h2 className={styles.number}>7k+</h2>
+            <p className={styles.numberText}>Positive Reviews</p>
+          </div>
+        </div>
+      </div>
       <Footer />
     </div>
   );
