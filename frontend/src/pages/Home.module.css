@@ -75,3 +75,77 @@
     font-size: 1.2rem;
     font-weight: 500;
 }
+
+.slider{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.latestTravelGuideContainer{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.latestTravelBox{
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 3rem;
+}
+
+.latestTravelText{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1.2rem;
+}
+
+.latestTravelDetails{
+    display: flex;
+    flex-direction: row;
+}
+
+.latestTravelDetails p{
+    color: grey;
+    font-size: 1.2rem;
+}
+
+.latestTravelDetails span{
+    color: grey;
+    font-size: 1.2rem;
+    padding-left: 2rem;
+}
+
+.latestTravelImage img{ 
+    width: 250px;
+    height: 200px;
+}
+
+.latestTravelDescription{
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.logosContainer{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    background-color: #F7F8FA;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 3rem;
+    filter: grayscale(100%);
+}
+
+.logosBox{
+    
+}
+
+.logosBox img{
+    width: 200px;
+    height: 140px;
+    
+}

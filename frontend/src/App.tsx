@@ -1,19 +1,23 @@
 import "./App.css";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import LoginForm from "./components/LoginForm";
-import SearchBar from "./components/SearchBar";
-import TourCard from "./components/TourCard";
-import Home from "./pages/Home";
-import TitleSubHome from "./components/TitleSubHome";
 import TesteAPI from "./components/TesteAPI";
+import { Slider, SliderProps, Slide } from "./components/Slider";
+import Home from "./pages/Home";
 
 function App() {
+  const settings: SliderProps = {
+    spaceBetween: 50,
+    slidesPerView: 3,
+    navigation: true,
+    pagination: {
+      clickable: true,
+    },
+  };
+
   return (
     <>
       {/* Usar react router para navegar entre telas */}
-      {/* <Home /> */}
-      <TesteAPI />
+      <Home />
+      {/* <TesteAPI /> */}
     </>
   );
 }
