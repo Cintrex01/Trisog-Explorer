@@ -1,9 +1,12 @@
 import express from "express";
+import cors from "cors";
 import db from "mongoose";
 import tourRoutes from "./routes/tours";
 import {json,urlencoded} from "body-parser";
 
 const app = express();
+
+app.use(cors());
 
 app.use(json());
 
