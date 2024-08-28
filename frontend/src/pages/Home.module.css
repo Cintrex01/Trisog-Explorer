@@ -181,3 +181,95 @@
     color: #565454;
 }
 
+.wcuContainer{
+    width: 100%;
+}
+
+.wcuBoxes{
+    padding: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid #ededed;
+}
+
+.wcuImage{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wcuText{
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.wcuDescription{
+    width: 45%;
+}
+
+.wcuDescription h3{
+    color: #FD5056;
+    font-family: "Kaushan Script", sans-serif;
+    font-size: 1.8rem;
+    padding-bottom: 1rem;
+}
+
+.wcuDescription h2{
+    color: #000;
+    font-size: 2.8rem;
+    padding-bottom: 1rem;
+}
+
+.wcuDescription p{
+    color: #565454;
+    font-size: 1.3rem;
+    padding-bottom: 1rem;
+}
+
+.wcuBenefitsRow{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 1rem;
+}
+
+.wcuBenefitsColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.benefit{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-right: 2rem;
+    padding-bottom: 1rem;
+}
+
+.benefit p{
+    padding-left: 1rem;
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.check{
+    color: #FD5056;
+}
+
+.wcuButton button{
+    background-color: #fff;
+    border: 1px solid #565454;
+    color: #565454;
+    padding: 1.5rem 3rem 1.5rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.wcuButton button:hover{
+    background-color: #e2e1e1;
+}

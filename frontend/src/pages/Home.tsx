@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaCheck } from "react-icons/fa";
 import Header from "../components/Header";
 import SearchBar from "../components/SearchBar";
 import Footer from "../components/Footer";
@@ -120,6 +121,60 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className={styles.wcuContainer}>
+        <div className={styles.wcuBoxes}>
+          <div className={styles.wcuImage}>
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2FwhyChooseUs%2FwhyChooseUs.png?alt=media&token=4836b0d9-d4a9-4f82-9c90-3d35c39fb456"
+              alt="Two images and a button written watch now"
+            />
+          </div>
+          <div className={styles.wcuText}>
+            <div className={styles.wcuDescription}>
+              <h3>Why Choose Us</h3>
+              <h2>Our Experiencies Meet High Quality Standarts</h2>
+              <p>
+                Holisticly optimize proactive strategic theme areas rather than
+                effective manufactured products create.
+              </p>
+            </div>
+            <div className={styles.wcuBenefitsRow}>
+              <div className={styles.wcuBenefitsColumn}>
+                <div className={styles.benefit}>
+                  <i className={styles.check}>
+                    <FaCheck />
+                  </i>
+                  <p>Travel Plan</p>
+                </div>
+                <div className={styles.benefit}>
+                  <i className={styles.check}>
+                    <FaCheck />
+                  </i>
+                  <p>Hand-picked Tour</p>
+                </div>
+              </div>
+              <div className={styles.wcuBenefitsColumn}>
+                <div className={styles.benefit}>
+                  <i className={styles.check}>
+                    <FaCheck />
+                  </i>
+                  <p>Cheap Rates</p>
+                </div>
+                <div className={styles.benefit}>
+                  <i className={styles.check}>
+                    <FaCheck />
+                  </i>
+                  <p>Private Guide</p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.wcuButton}>
+              <button>Contact Us</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <TitleSubHome title="Browse By Category" subtitle="Pick A Tour Type" />
       <div className={styles.wtsContainer}>
         <div className={styles.wtsBoxes}>
           <div className={styles.wtsImage}>
