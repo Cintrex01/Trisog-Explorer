@@ -46,9 +46,12 @@ const Home = () => {
   const [tours, setTours] = useState<TourProps[]>([]);
 
   const settings: SliderProps = {
+    autoplay: {
+      delay: 4000,
+    },
     spaceBetween: 50,
     slidesPerView: 4,
-    navigation: true,
+    /* navigation: true, */
     pagination: {
       clickable: true,
     },
@@ -202,7 +205,7 @@ const Home = () => {
           <div className={styles.latestTravelBox}>
             <div className={styles.latestTravelImage}>
               <img
-                src="https://cdn.tourradar.com/s3/tour/232x150/258076_65154e9b061b7.jpg"
+                src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2FlatestTravelGuide%2F258076_65154e9b061b7.jpg?alt=media&token=b538652c-2ffe-4138-8ffb-e06eb7267fad"
                 alt="students"
               />
             </div>
@@ -219,7 +222,7 @@ const Home = () => {
           <div className={styles.latestTravelBox}>
             <div className={styles.latestTravelImage}>
               <img
-                src="https://img.baba-blog.com/2024/05/the-fedora-hat3.jpg?x-oss-process=style/full"
+                src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2FlatestTravelGuide%2Fthe-fedora-hat3.webp?alt=media&token=3bfe19f2-c1f0-49b4-b8f9-08ade60dfffd"
                 alt="Woman in front of a lake"
               />
             </div>
@@ -236,7 +239,7 @@ const Home = () => {
           <div className={styles.latestTravelBox}>
             <div className={styles.latestTravelImage}>
               <img
-                src="https://i.postimg.cc/PqZmtSvC/Captura-de-tela-2024-08-27-171255.png"
+                src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2FlatestTravelGuide%2FCaptura-de-tela-2024-08-27-171255.png?alt=media&token=6d0b0ec7-dda5-44c5-ab0b-8d53e501518d"
                 alt="Woman with pineapples"
               />
             </div>
@@ -253,7 +256,7 @@ const Home = () => {
           <div className={styles.latestTravelBox}>
             <div className={styles.latestTravelImage}>
               <img
-                src="https://img.freepik.com/fotos-gratis/retrato-ao-ar-livre-na-parte-de-tras-de-um-turista-masculino-carregando-uma-grande-mochila-decorada-e-caminhando-para-as-montanhas-pela-manha_197531-4438.jpg"
+                src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2FlatestTravelGuide%2Fretrato-ao-ar-livre-na-parte-de-tras-de-um-turista-masculino-carregando-uma-grande-mochila-decorada-.jpg?alt=media&token=2391a3e3-718a-4b76-b353-7237ab5d703b"
                 alt="Man with backpack in front of a lake"
               />
             </div>
@@ -271,19 +274,19 @@ const Home = () => {
       </div>
       <div className={styles.logosContainer}>
         <div className={styles.logosBox}>
-          <img src="https://i.postimg.cc/x1qwQvXz/verao-e-tipografia-de-ferias-ilustracao-53876-3263-removebg-preview.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2Flogos%2Fverao-e-tipografia-de-ferias-ilustracao_53876-3263-removebg-preview.png?alt=media&token=085e82c4-ff1f-41fb-8aa9-940eb3d55d68" />
         </div>
         <div className={styles.logosBox}>
-          <img src="https://i.postimg.cc/90rSG9v9/aim-high-font-3-big-removebg-preview.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2Flogos%2Faim-high-font-3-big-removebg-preview.png?alt=media&token=c09aa0d7-faf8-45fa-b27f-b0c60a7da8d2" />
         </div>
         <div className={styles.logosBox}>
-          <img src="https://i.postimg.cc/QC7MfF7B/56905505-mountain-landscape-removebg-preview.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2Flogos%2F56905505-mountain-landscape-removebg-preview.png?alt=media&token=0337010d-4e0c-47f7-87b5-578dee79638a" />
         </div>
         <div className={styles.logosBox}>
-          <img src="https://i.postimg.cc/bJq3Rn2J/images-removebg-preview.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2Flogos%2Fimages-removebg-preview.png?alt=media&token=cfe7fc11-33d3-4414-b75f-639455a3f2c0" />
         </div>
         <div className={styles.logosBox}>
-          <img src="https://i.postimg.cc/9Q4PPp81/8492115-removebg-preview.png" />
+          <img src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2Flogos%2F8492115-removebg-preview.png?alt=media&token=96579da2-514d-4785-a073-bd9fb2a3a4af" />
         </div>
       </div>
       <Footer />
