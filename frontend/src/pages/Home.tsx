@@ -120,6 +120,27 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className={styles.wtsContainer}>
+        <div className={styles.wtsBoxes}>
+          <div className={styles.wtsImage}>
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2FwhatTravelersSay%2FwhatTravelersSay.png?alt=media&token=d418f704-1a54-463d-9d26-739dd3eef85d"
+              alt="three people"
+            />
+          </div>
+          <div className={styles.wtsText}>
+            <TitleSubHome title="Testimonials" subtitle="What Travelers Say" />
+            <h2 className={styles.quote}>”</h2>
+            <p className={styles.travelerComment}>
+              "The UI designs he crafted are top-notch, and the <br /> design
+              system he integrated allows for straight <br /> forward fixes and
+              bulk updates throughout almost <br />
+              every area of the app."
+            </p>
+            <p className={styles.author}>-By Molie Rosa, Photographer</p>
+          </div>
+        </div>
+      </div>
       <TitleSubHome title="Updates" subtitle="Latest Travel Guide" />
       <div>
         <div className={styles.latestTravelGuideContainer}>

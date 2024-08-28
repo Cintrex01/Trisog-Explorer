@@ -140,12 +140,44 @@
     filter: grayscale(100%);
 }
 
-.logosBox{
-    
-}
-
 .logosBox img{
     width: 200px;
     height: 140px;
     
 }
+
+.wtsContainer{
+    width: 100%;
+    background-color: #F7F8FA;
+}
+
+.wtsBoxes{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 3rem;
+}
+
+.wtsText{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quote{
+    font-size: 5rem;
+    color: #FD5056;
+}
+
+.travelerComment{
+    font-size: 1.4rem;
+    font-weight: 700;
+    padding-bottom: 2rem;
+}
+
+.author{
+    font-size: 1.2rem;
+    color: #565454;
+}
+
