@@ -8,6 +8,7 @@ import TitleSubHome from "../components/TitleSubHome";
 import { Slider, SliderProps, Slide } from "../components/Slider";
 import TourCard from "../components/TourCard";
 import { api } from "../services/api";
+import TypeCards from "../components/TypeCards";
 
 interface Review {
   name: string;
@@ -42,15 +43,34 @@ interface TourProps {
   __v?: number;
 }
 
+interface CategoryData {
+  type: string;
+  tourCount: number;
+  minPrice: number;
+}
+
 const Home = () => {
   const [tours, setTours] = useState<TourProps[]>([]);
+  const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
 
-  const settings: SliderProps = {
+  const settingsTour: SliderProps = {
     autoplay: {
       delay: 4000,
     },
     spaceBetween: 50,
     slidesPerView: 4,
+    /* navigation: true, */
+    pagination: {
+      clickable: true,
+    },
+  };
+
+  const settingsType: SliderProps = {
+    autoplay: {
+      delay: 4000,
+    },
+    spaceBetween: 50,
+    slidesPerView: 6,
     /* navigation: true, */
     pagination: {
       clickable: true,
@@ -65,6 +85,25 @@ const Home = () => {
     try {
       const response = await api.get("/tours");
       setTours(response.data.data);
+
+      const categoryMap: { [key: string]: CategoryData } = {};
+
+      tours.forEach((tour) => {
+        if (!categoryMap[tour.type]) {
+          categoryMap[tour.type] = {
+            type: tour.type,
+            tourCount: 1,
+            minPrice: tour.price,
+          };
+        } else {
+          categoryMap[tour.type].tourCount += 1;
+          if (tour.price < categoryMap[tour.type].minPrice) {
+            categoryMap[tour.type].minPrice = tour.price;
+          }
+        }
+      });
+
+      setCategoryData(Object.values(categoryMap));
     } catch (error) {
       console.error("Error fetching tours:", error);
     }
@@ -83,9 +122,9 @@ const Home = () => {
       <SearchBar />
       <TitleSubHome title="Tours" subtitle="Most Popular Tours" />
       <div className={styles.slider}>
-        <Slider settings={settings}>
+        <Slider settings={settingsTour}>
           {tours.length > 0 ? (
-            tours.map((tour) => (
+            tours.slice(0, 8).map((tour) => (
               <Slide key={tour._id}>
                 <TourCard
                   image={tour.image}
@@ -103,7 +142,6 @@ const Home = () => {
           )}
         </Slider>
       </div>
-
       <div className={styles.numbersContainer}>
         <div className={styles.numbers}>
           <div className={styles.numberBox}>
@@ -178,6 +216,19 @@ const Home = () => {
         </div>
       </div>
       <TitleSubHome title="Browse By Category" subtitle="Pick A Tour Type" />
+      <div className={styles.slider}>
+        <Slider settings={settingsType}>
+          {categoryData.length > 0 ? (
+            categoryData.map((category) => (
+              <Slide key={category.type}>
+                <TypeCards categoryData={category} />
+              </Slide>
+            ))
+          ) : (
+            <p>No categories available</p>
+          )}
+        </Slider>
+      </div>
       <div className={styles.wtsContainer}>
         <div className={styles.wtsBoxes}>
           <div className={styles.wtsImage}>

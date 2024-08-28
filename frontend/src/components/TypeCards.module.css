@@ -1,0 +1,39 @@
+.typeContainer{
+    border: 1px solid #565454;
+    width: 200px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.typeContainer:hover{
+    transform: translateY(-10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.typeIcon{
+    font-size: 5rem;
+    color: #FD5056;
+}
+
+.typeContainer h3{
+    font-size: 1.8rem;
+    color: #000;
+    font-weight: 600;
+}
+
+.typeContainer p{
+    font-size: 1.6rem;
+    color: #565454;
+    
+}
+
+.price{
+    color: #FD5056;
+    font-family: "Kaushan Script", sans-serif;
+    font-size: 1.8rem;
+}
