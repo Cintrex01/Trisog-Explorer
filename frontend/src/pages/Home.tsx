@@ -162,6 +162,28 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div className={styles.tadContainer}>
+        <TitleSubHome
+          title="Destination"
+          subtitle="Top Attractions Destinations"
+        />
+        <div className={styles.tadImages}>
+          {tours.length > 0 ? (
+            tours.slice(0, 6).map((tour) => (
+              <div className={styles.tad}>
+                <img src={tour.image} alt="Destination" />
+                <p>
+                  <span>{tour.maxPeople * 1005} Travelers</span> <br />
+                  {tour.place}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p>No Destinations available</p>
+          )}
+        </div>
+      </div>
+
       <div className={styles.wcuContainer}>
         <div className={styles.wcuBoxes}>
           <div className={styles.wcuImage}>

@@ -273,3 +273,53 @@
 .wcuButton button:hover{
     background-color: #e2e1e1;
 }
+
+.tadContainer{
+    background-color: #F7F8FA;
+    padding-bottom: 5rem;
+}
+
+.tadImages{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+
+.tadImages img{
+    width: 600px;
+    height: 300px;
+}
+
+.tad {
+    position: relative;
+    width: 600px;
+    height: 300px;
+  }
+  
+  .tad img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .tad p {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    margin: 0;
+    color: white; 
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente para melhor visibilidade do texto */
+    padding: 0.5rem;
+    border-radius: 5px;
+    line-height: 2rem;
+    font-size: 1.8rem;
+    font-family: "Kaushan Script", sans-serif;
+  }
+
+  .tad p span{
+    font-family: "Work Sans", sans-serif;
+    font-size: 1.1rem;
+  }
