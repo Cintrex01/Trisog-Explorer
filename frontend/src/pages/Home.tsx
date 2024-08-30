@@ -81,11 +81,8 @@ const Home = () => {
     loadTours();
   }, []);
 
-  async function loadTours() {
-    try {
-      const response = await api.get("/tours");
-      setTours(response.data.data);
-
+  useEffect(() => {
+    if (tours.length > 0) {
       const categoryMap: { [key: string]: CategoryData } = {};
 
       tours.forEach((tour) => {
@@ -104,6 +101,13 @@ const Home = () => {
       });
 
       setCategoryData(Object.values(categoryMap));
+    }
+  }, [tours]);
+
+  async function loadTours() {
+    try {
+      const response = await api.get("/tours");
+      setTours(response.data.data);
     } catch (error) {
       console.error("Error fetching tours:", error);
     }
@@ -170,7 +174,7 @@ const Home = () => {
         <div className={styles.tadImages}>
           {tours.length > 0 ? (
             tours.slice(0, 6).map((tour) => (
-              <div className={styles.tad}>
+              <div className={styles.tad} key={tour._id}>
                 <img src={tour.image} alt="Destination" />
                 <p>
                   <span>{tour.maxPeople * 1005} Travelers</span> <br />

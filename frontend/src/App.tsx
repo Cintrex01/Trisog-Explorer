@@ -1,15 +1,39 @@
 import "./App.css";
-import TesteAPI from "./components/TesteAPI";
 import Home from "./pages/Home";
-import TypeCards from "./components/TypeCards";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import ProtectedRoute from "./components/ProtectedRoutes";
+import Login from "./pages/Login";
+import Tour from "./pages/Tour";
+import TourDetails from "./pages/TourDetails";
 
 function App() {
   return (
     <>
-      {/* Usar react router para navegar entre telas */}
-      <Home />
-      {/* <TesteAPI /> */}
-      {/* <TypeCards /> */}
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
+            <Route
+              path="/tour"
+              element={
+                <ProtectedRoute>
+                  <Tour />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/tourDetails"
+              element={
+                <ProtectedRoute>
+                  <TourDetails />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </Router>
+      </AuthProvider>
     </>
   );
 }

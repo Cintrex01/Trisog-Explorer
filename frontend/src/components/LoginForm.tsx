@@ -1,30 +1,122 @@
-import { useState } from 'react';
+import React, { useState, FormEvent } from "react";
+import { Navigate } from "react-router-dom";
+import {
+  doSignWithEmailAndPassword,
+  doSignInWithGoogle,
+  doCreateUserWithEmailAndPassword,
+  doSignInWithFacebook,
+} from "../services/auth";
+import { useAuth } from "../contexts/AuthContext";
+import { FirebaseError } from "firebase/app";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
-import styles from './LoginForm.module.css'
+import "./LoginForm.css";
 
-const LoginForm = () => {
+const Login: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [isSigning, setIsSigning] = useState<boolean>(false);
+  const [emailError, setEmailError] = useState<string>("");
+  const [passwordError, setPasswordError] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const [signInError, setSignInError] = useState<string>("");
+  const { userLoggedIn } = useAuth();
 
-    const [isSigning, setIsSigning] = useState<boolean>(false);
-    const [errorMessage, setErrorMessage] = useState<string>("");
-    const [emailError, setEmailError] = useState<string>("");
-    const [passwordError, setPasswordError] = useState<string>("");
-    const [signInError, setSignInError] = useState<string>("");
+  const handleRegister = async (e: FormEvent) => {
+    e.preventDefault();
+    setEmailError("");
+    setPasswordError("");
+    setSignInError("");
+    try {
+      await doCreateUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      handleErrors(error as FirebaseError);
+    }
+  };
 
+  const handleSignIn = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!isSigning) {
+      setEmailError("");
+      setPasswordError("");
+      setSignInError("");
+      try {
+        await doSignWithEmailAndPassword(email, password);
+      } catch (error) {
+        handleErrors(error as FirebaseError);
+      }
+    }
+  };
 
-    const signMode = () => {
-        setIsSigning(!isSigning);
-      };
+  const onGoogleSignIn = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!isSigning) {
+      setEmailError("");
+      setPasswordError("");
+      setErrorMessage("");
+      setSignInError("");
+      try {
+        await doSignInWithGoogle();
+      } catch (error) {
+        handleErrors(error as FirebaseError);
+      }
+    }
+  };
+
+  const onFacebookSignIn = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!isSigning) {
+      setEmailError("");
+      setPasswordError("");
+      setErrorMessage("");
+      setSignInError("");
+      try {
+        await doSignInWithFacebook();
+      } catch (error) {
+        handleErrors(error as FirebaseError);
+      }
+    }
+  };
+
+  const handleErrors = (error: FirebaseError) => {
+    const errorCode = error.code;
+    switch (errorCode) {
+      case "auth/invalid-credential":
+        setSignInError("Invalid e-mail or password.");
+        break;
+      case "auth/email-already-in-use":
+        setEmailError("Email already exists.");
+        break;
+      case "auth/weak-password":
+        setPasswordError("Password should be at least 6 characters.");
+        break;
+      default:
+        setErrorMessage("An unknown error occurred, please try again.");
+        break;
+    }
+  };
+
+  const signMode = () => {
+    setIsSigning(!isSigning);
+    setEmail("");
+    setPassword("");
+    setEmailError("");
+    setPasswordError("");
+    setErrorMessage("");
+    setSignInError("");
+  };
 
   return (
-    <section className={styles.loginSection}>
-      <div className={styles.signInContainer}>
-        <div className={styles.loginHeader}>
-          <h1>Trisog Travel Agency</h1>
+    <section id="login-section">
+      <div className="signInContainer">
+        {userLoggedIn && <Navigate to="/Home" replace={true} />}
+        <div className="login-header">
+          <h1>Travel Agency</h1>
         </div>
 
         <form
-          className={styles.loginForm}
+          id="login-form"
+          onSubmit={isSigning ? handleRegister : handleSignIn}
         >
           <h2>{isSigning ? "SIGN UP" : "SIGN IN"}</h2>
           <p>
@@ -32,28 +124,32 @@ const LoginForm = () => {
               ? "Create your account"
               : "Enter your credentials to access your account"}
           </p>
-          {errorMessage && <span className={styles.errors}>{errorMessage}</span>}
-          {signInError && <span className={styles.errors}>{signInError}</span>}
+          {errorMessage && <span className="errors">{errorMessage}</span>}
+          {signInError && <span className="errors">{signInError}</span>}
           <label htmlFor="email">Email</label>
           <input
             type="email"
             placeholder="Enter your email"
             className={`inputBase ${emailError ? "inputError" : ""}`}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
-          {emailError && <span className={styles.errors}>{emailError}</span>}
+          {emailError && <span className="errors">{emailError}</span>}
           <label htmlFor="password">Password</label>
           <input
             type="password"
             placeholder="Enter your password"
             className={`inputBase ${passwordError ? "inputError" : ""}`}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          {passwordError && <span className={styles.errors}>{passwordError}</span>}
-          <button type="submit" className={styles.signInButton}>
+          {passwordError && <span className="errors">{passwordError}</span>}
+          <button type="submit" className="signInButton">
             {isSigning ? "SIGN UP" : "SIGN IN"}
           </button>
-          <div className={styles.switch}>
+          <div className="switch">
             <a
-              className={styles.signUpA}
+              className="signUpA"
               onClick={(e) => {
                 e.preventDefault();
                 signMode();
@@ -67,22 +163,24 @@ const LoginForm = () => {
           <p style={isSigning ? { display: "none" } : {}}>OR</p>
           <button
             disabled={isSigning}
-            className={styles.googleButton}
+            onClick={onGoogleSignIn}
+            className="googleButton"
           >
-            <FaGoogle className={styles.googleIcon} />{" "}
+            <FaGoogle className="google-icon" />{" "}
             <span>SIGN IN WITH GOOGLE</span>
           </button>
           <button
             disabled={isSigning}
-            className={styles.facebookButton}
+            onClick={onFacebookSignIn}
+            className="facebookButton"
           >
-            <FaFacebookF className={styles.facebookIcon} />{" "}
+            <FaFacebookF className="facebook-icon" />{" "}
             <span>SIGN IN WITH FACEBOOK</span>
           </button>
         </form>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default Login;

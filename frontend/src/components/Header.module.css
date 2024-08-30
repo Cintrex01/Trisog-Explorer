@@ -134,3 +134,20 @@
     font-size: 20px;
     text-align: right;
 }
+
+.logout{
+    display: flex;
+    align-items: center;
+    color: #FD5056;
+}
+
+.logout:hover{
+    color: #da454a;
+}
+
+.logout i{
+    padding-left: 0.3rem;
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+}
