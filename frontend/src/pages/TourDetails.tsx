@@ -5,6 +5,13 @@ import { api } from "../services/api";
 import { TourProps } from "./Tour";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { GoDeviceCameraVideo } from "react-icons/go";
+import { MdOutlinePhoto } from "react-icons/md";
+import { CiShare2 } from "react-icons/ci";
+import { CiHeart } from "react-icons/ci";
+import { CiLocationOn } from "react-icons/ci";
+import { FaStar } from "react-icons/fa";
+import Map from "../components/Map";
 
 const TourDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -50,7 +57,85 @@ const TourDetails = () => {
     <>
       <Header />
       <div className={styles.containerMain}>
-        <div className={styles.containerLeft}></div>
+        <div className={styles.containerLeft}>
+          <div className={styles.imageContainer}>
+            <img src={tour.image} alt={tour.place} />
+            <div className={styles.textOverlay}>
+              <div className={styles.textIconOverlay}>
+                <span className={styles.videoText}>Video</span>
+                <i>
+                  <GoDeviceCameraVideo />
+                </i>
+              </div>
+              <div className={styles.textIconOverlay}>
+                <span className={styles.galleryText}>Gallery</span>
+                <i>
+                  <MdOutlinePhoto />
+                </i>
+              </div>
+            </div>
+          </div>
+          <div className={styles.imageSubtitle}>
+            <div className={styles.imageSubtitleLeft}>
+              <i>
+                <CiLocationOn />
+              </i>
+              <p>{tour.place}</p>
+              <span>View on map</span>
+            </div>
+            <div className={styles.imageSubtitleRight}>
+              <i>
+                <CiShare2 />
+              </i>
+              <i>
+                <CiHeart />
+              </i>
+            </div>
+          </div>
+          <div className={styles.tourTitle}>
+            <h2>{tour.title}</h2>
+          </div>
+          <div className={styles.tourInfo}>
+            <div className={styles.tourInfoDetail}>
+              <p>From</p>
+              <span>{`$${tour.price}`}</span>
+            </div>
+            <div className={styles.tourInfoDetail}>
+              <p>Duration</p>
+              <h6>{`${tour.duration} days`}</h6>
+            </div>
+            <div className={styles.tourInfoDetail}>
+              <p>Max People</p>
+              <h6>{tour.maxPeople}</h6>
+            </div>
+            <div className={styles.tourInfoDetail}>
+              <p>Min Age</p>
+              <h6>{`${tour.minAge}+`}</h6>
+            </div>
+            <div className={styles.tourInfoDetail}>
+              <p>Tour Type</p>
+              <h6>{tour.type}</h6>
+            </div>
+            <div className={styles.tourInfoDetail}>
+              <p>Reviews</p>
+              <div>
+                <span>
+                  <FaStar />
+                </span>
+                <h6>{tour.grade}</h6>
+                <p>{`(${tour.reviewNumber} reviews)`}</p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.tourOverview}>
+            <h2>Overview</h2>
+            <p>{tour.description}</p>
+          </div>
+          <div className={styles.map}>
+            <h2>Map</h2>
+            <Map city={tour.place} />
+          </div>
+        </div>
         <div className={styles.containerRight}>
           <div className={styles.priceBox}>
             <div className={styles.perPerson}>
@@ -121,12 +206,6 @@ const TourDetails = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <h1>{tour.title}</h1>
-        <img src={tour.image} alt={tour.title} />
-        <p>{tour.description}</p>
-        {/* Exibir mais detalhes do tour */}
       </div>
       <Footer />
     </>
