@@ -1,0 +1,224 @@
+.titleContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    padding-bottom: 1rem;
+}
+
+.titleContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 68%;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/desafio3compass.appspot.com/o/ImagensEstaticas%2Fheaders%2FtoursPackage.jpg?alt=media&token=899644d4-d994-4538-9f14-7569bcb516f1');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    filter: brightness(80%) contrast(90%) grayscale(10%) saturate(100%);
+    z-index: -1;
+    overflow: hidden;
+}
+
+.pretitle{
+    font-size: 3rem;
+    color: #FD5056;
+    font-family: "Kaushan Script", sans-serif;
+    filter: none;
+}
+
+.title{
+    font-size: 5rem;
+    color: #fff;
+    filter: none;
+}
+
+.subtitle{
+    font-size: 1.7rem;
+    color: #fff;
+    filter: none;
+}
+
+.container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+.containerFilters{
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.searchBox{
+    background-color: #F7F8FA;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.searchBox label{
+    color: #000;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.searchInput {
+    position: relative;
+    padding-top: 0.3rem;
+  }
+  
+  .searchInput input {
+    font-size: 1rem;
+    padding: 1rem;
+    padding-right: 2.5rem; 
+    width: 100%; 
+    border: none;
+}
+  
+  .searchIcon {
+    position: absolute;
+    top: 50%; 
+    right: 1rem; 
+    transform: translateY(-40%); 
+    pointer-events: none; 
+    font-size: 1.8rem; 
+}
+
+.priceBox{
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F8FA;
+}
+
+.priceBox label{
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.priceBox input[type="range"] {
+    -webkit-appearance: none; 
+    appearance: none;
+    background: transparent; 
+    width: 100%;
+  }
+
+.priceBox input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    background: grey; 
+    border-radius: 5px;
+  }
+
+.priceBox input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #FD5056; 
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -6px; 
+}
+
+.prices{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 0.8rem;
+    font-size: 1.2rem;
+}
+
+.actualPrice{
+    font-weight: 700;
+}
+
+.priceBox button{
+    color: #fff;
+    background-color: #FD5056;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    height: 2.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
+    width: 50%;
+}
+
+.priceBox button:hover{
+    background-color: #d8474c;
+}
+
+.categoriesBox{
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F8FA;
+}
+
+.categoriesBox label{
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.checkOption{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 0.8rem;
+}
+
+.checkOption p{
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+
+.destinationsBox{
+    background-color: #F7F8FA;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.destinationsBox label{
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.continent{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+.continent label{
+    font-size: 1rem;
+}
+
+.gradeBox{
+    background-color: #F7F8FA;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.gradeBox div label{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.gradeBoxLabel{
+    padding-bottom: 1rem;
+}
+
