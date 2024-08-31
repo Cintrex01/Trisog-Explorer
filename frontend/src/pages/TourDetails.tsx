@@ -133,7 +133,7 @@ const TourDetails = () => {
           </div>
           <div className={styles.map}>
             <h2>Map</h2>
-            <Map city={tour.place} />
+            <Map key={id} city={tour.place} />
           </div>
         </div>
         <div className={styles.containerRight}>

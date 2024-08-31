@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, Marker, useLoadScript } from "@react-google-maps/api";
 
 interface MapProps {
   city: string;
 }
 
 const Map: React.FC<MapProps> = ({ city }) => {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyB3FJMqoitucCKpX_63uffuXWsSM_VS0c0",
+  });
+
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(
     null
   );
@@ -17,7 +21,7 @@ const Map: React.FC<MapProps> = ({ city }) => {
           `https://maps.googleapis.com/maps/api/geocode/json?address=${city}&key=AIzaSyB3FJMqoitucCKpX_63uffuXWsSM_VS0c0`
         );
         const data = await response.json();
-        const locationData = data.results[0].geometry.location;
+        const locationData = data.results[0]?.geometry.location;
         setLocation(locationData);
       } catch (error) {
         console.error("Error fetching location:", error);
@@ -27,20 +31,18 @@ const Map: React.FC<MapProps> = ({ city }) => {
     fetchLocation();
   }, [city]);
 
-  return (
-    <LoadScript googleMapsApiKey="AIzaSyB3FJMqoitucCKpX_63uffuXWsSM_VS0c0">
-      {location ? (
-        <GoogleMap
-          mapContainerStyle={{ height: "400px", width: "100%" }}
-          center={location}
-          zoom={12}
-        >
-          <Marker position={location} />
-        </GoogleMap>
-      ) : (
-        <p>Loading map...</p>
-      )}
-    </LoadScript>
+  if (!isLoaded) return <p>Loading map...</p>;
+
+  return location ? (
+    <GoogleMap
+      mapContainerStyle={{ height: "400px", width: "100%" }}
+      center={location}
+      zoom={12}
+    >
+      <Marker position={location} />
+    </GoogleMap>
+  ) : (
+    <p>Loading map...</p>
   );
 };
 
