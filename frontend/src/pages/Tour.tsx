@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { CiSearch } from "react-icons/ci";
 import { api } from "../services/api";
 import TourCard from "../components/TourCard";
+import { Link } from "react-router-dom";
 
 interface Review {
   name: string;
@@ -20,7 +21,7 @@ interface Review {
   date: string;
 }
 
-interface TourProps {
+export interface TourProps {
   _id: string;
   title: string;
   place: string;
@@ -213,17 +214,23 @@ const Tour = () => {
         >
           {tours.length > 0 ? (
             tours.map((tour) => (
-              <div key={tour._id}>
-                <TourCard
-                  image={tour.image}
-                  location={tour.place}
-                  title={tour.title}
-                  grade={tour.grade}
-                  reviews={tour.reviewNumber}
-                  duration={tour.duration}
-                  price={tour.price}
-                />
-              </div>
+              <Link
+                to={`/tourDetails/${tour._id}`}
+                style={{ textDecoration: "none" }}
+              >
+                <div key={tour._id}>
+                  <TourCard
+                    _id={tour._id}
+                    image={tour.image}
+                    location={tour.place}
+                    title={tour.title}
+                    grade={tour.grade}
+                    reviews={tour.reviewNumber}
+                    duration={tour.duration}
+                    price={tour.price}
+                  />
+                </div>
+              </Link>
             ))
           ) : (
             <p>No tours available</p>

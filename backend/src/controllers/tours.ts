@@ -22,6 +22,19 @@ export const getTours: RequestHandler = async (req, res, next) => {
         next(error);
     }
 };
+// Obter um tour por ID
+export const getTourById: RequestHandler = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const tour = await Tour.findById(id);
+        if (!tour) {
+            return res.status(404).json({ message: "Tour not found" });
+        }
+        res.status(200).json({ data: tour });
+    } catch (error) {
+        next(error);
+    }
+};
 
 // Atualizar um tour por ID
 export const updateTour: RequestHandler = async (req, res, next) => {

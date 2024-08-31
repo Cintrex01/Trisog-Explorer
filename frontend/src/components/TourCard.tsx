@@ -11,6 +11,7 @@ interface TourCardProps {
   reviews: number;
   duration: number;
   price: number;
+  _id: string;
 }
 
 const TourCard: React.FC<TourCardProps> = ({

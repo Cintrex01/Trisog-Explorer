@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTour = exports.updateTour = exports.getTours = exports.createTour = void 0;
+exports.deleteTour = exports.updateTour = exports.getTourById = exports.getTours = exports.createTour = void 0;
 const tours_1 = __importDefault(require("../models/tours"));
 // Criar um novo tour
 const createTour = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -37,6 +37,21 @@ const getTours = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getTours = getTours;
+// Obter um tour por ID
+const getTourById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const tour = yield tours_1.default.findById(id);
+        if (!tour) {
+            return res.status(404).json({ message: "Tour not found" });
+        }
+        res.status(200).json({ data: tour });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.getTourById = getTourById;
 // Atualizar um tour por ID
 const updateTour = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;

@@ -131,6 +131,7 @@ const Home = () => {
             tours.slice(0, 8).map((tour) => (
               <Slide key={tour._id}>
                 <TourCard
+                  _id={tour._id}
                   image={tour.image}
                   location={tour.place}
                   title={tour.title}
