@@ -278,3 +278,260 @@
 .map{
     padding-bottom: 1.5rem;
 }
+
+.averageReviewsTitle{
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+.averageReviews{
+    background-color: #F7F8FA;
+}
+
+.averageReviewsBox{
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+}
+
+.averageReviewsSquare{
+    width: 25%;
+    height: 250px;
+    background-color: #FD5056;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.averageReviewsSquare h2{
+    font-size: 5rem;
+    color: #fff;
+    padding-bottom: 0.7rem;
+}
+
+.averageReviewsSquare p{
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    color: #fff;
+}
+
+.averageReviewsSquare i{
+    padding-right: 0.3rem;
+}
+
+.averageReviewsNumbers{
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.averageReviewsNumbersColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewCategory{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.reviewCategory p{
+    font-size: 1.1rem;
+    
+}
+
+.reviewCategory div{
+    width: 200px;
+    height: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.reviewCategory div p{
+    padding-left: 1rem;
+    font-size: 1.1rem;
+}
+
+.bar1,.bar2,.bar3,.bar4,.bar5{
+    position: absolute;
+    width: 20%;
+    height: 100%; 
+    z-index: 1; 
+    background-color: #FD5056;
+}
+
+.showReview{
+    padding-top: 1.5rem;
+}
+
+.showReview h2{
+    font-size: 1.3rem;
+}
+
+.review{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #E8E7EC;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.reviewPhoto{
+    height: 200px;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.reviewPhoto div{
+    border: 1px solid #000;
+    border-radius: 30%;
+    padding: 2rem;
+}
+
+.reviewDate{
+    padding-bottom: 0.6rem;
+}
+
+.reviewInfo{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+    
+.reviewInfo h2{
+    padding-bottom: 0.5rem;
+}
+
+.gradeReviewNumber{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-bottom: 1rem;
+}
+
+.gradeReviewNumber div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 1rem;
+    color: #fff;
+    background-color: #FD5056;
+    padding: 0.3rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.gradeReviewNumber div i{
+    padding-right: 0.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.addReview{
+    background-color: #F7F8FA;
+    padding: 2rem;
+}
+
+.addReview h2{
+    font-size: 1.3rem;
+    padding-bottom: 1rem;
+}
+
+.reviewRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.reviewColumn{
+    display: flex;
+    flex-direction: column;
+    padding-right: 3rem;
+}
+
+.reviewColumn p{
+    padding-bottom: 0.5rem;
+}
+
+.stars{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.stars button{
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-right: 0.4rem;
+    color: #C7CAD3;
+    background-color: #F7F8FA;
+}
+
+.formReview{
+    padding-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.formRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.formRow input{
+    width: 48%;
+    height: 3rem;
+    padding-left: 1rem;
+    font-size: 1rem;
+    border: none;
+}
+
+.reviewComment{
+    padding-top: 1rem;
+}
+
+.reviewComment textarea{
+    width: 100%;
+    height: 7rem;
+    padding: 1rem;
+    font-size: 1rem;
+    border: none;
+    resize: none;
+}
+
+.reviewButton{
+    padding-top: 1rem;
+}
+
+.reviewButton button{
+    border: none;
+    background-color: #FD5056;
+    color: #fff;
+    padding: 1rem 1.2rem 1rem 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.reviewButton button:hover{
+    background-color: #dd484d;
+
+}

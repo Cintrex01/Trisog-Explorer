@@ -12,6 +12,7 @@ import { CiHeart } from "react-icons/ci";
 import { CiLocationOn } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import Map from "../components/Map";
+import { FaUserAlt } from "react-icons/fa";
 
 const TourDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -134,6 +135,301 @@ const TourDetails = () => {
           <div className={styles.map}>
             <h2>Map</h2>
             <Map key={id} city={tour.place} />
+          </div>
+          <h2 className={styles.averageReviewsTitle}>Average Reviews</h2>
+          <div className={styles.averageReviews}>
+            <div className={styles.averageReviewsBox}>
+              <div className={styles.averageReviewsSquare}>
+                <h2>{tour.grade}</h2>
+                <p>
+                  <i>
+                    <FaStar />
+                  </i>
+                  Excellent
+                </p>
+              </div>
+              <div className={styles.averageReviewsNumbers}>
+                <div className={styles.averageReviewsNumbersColumn}>
+                  <div className={styles.reviewCategory}>
+                    <p>Services</p>
+                    <div>
+                      <div>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                        <div className={styles.bar4}></div>
+                        <div className={styles.bar5}></div>
+                      </div>
+                      <p>4</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewCategory}>
+                    <p>Locations</p>
+                    <div>
+                      <div>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                        <div className={styles.bar4}></div>
+                        <div className={styles.bar5}></div>
+                      </div>
+                      <p>4</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewCategory}>
+                    <p>Amenities</p>
+                    <div>
+                      <div>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                        <div className={styles.bar4}></div>
+                        <div className={styles.bar5}></div>
+                      </div>
+                      <p>4</p>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.averageReviewsNumbersColumn}>
+                  <div className={styles.reviewCategory}>
+                    <p>Prices</p>
+                    <div>
+                      <div>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                        <div className={styles.bar4}></div>
+                        <div className={styles.bar5}></div>
+                      </div>
+                      <p>4</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewCategory}>
+                    <p>Food</p>
+                    <div>
+                      <div>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                        <div className={styles.bar4}></div>
+                        <div className={styles.bar5}></div>
+                      </div>
+                      <p>4</p>
+                    </div>
+                  </div>
+                  <div className={styles.reviewCategory}>
+                    <p>Room comfort</p>
+                    <div>
+                      <div>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                        <div className={styles.bar4}></div>
+                        <div className={styles.bar5}></div>
+                      </div>
+                      <p>4</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles.showReview}>
+            <h2>Showing {tour.reviewNumber} reviews</h2>
+            <div className={styles.review}>
+              <div className={styles.reviewPhoto}>
+                <div>
+                  <i>
+                    <FaUserAlt />
+                  </i>
+                </div>
+              </div>
+              <div className={styles.reviewInfo}>
+                <p className={styles.reviewDate}>March 20, 2022</p>
+                <h2>Sindy Simmons</h2>
+                <div className={styles.gradeReviewNumber}>
+                  <div>
+                    <i>
+                      <FaStar />
+                    </i>
+                    4.8
+                  </div>
+                  <p>15 Reviews</p>
+                </div>
+                <p>
+                  Objectively productivate just in time information with dynamic
+                  channels. Energistically exploit seamless growth strategies
+                  after 24/7 experiences.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className={styles.addReview}>
+            <h2>Add a review</h2>
+            <div className={styles.reviewRow}>
+              <div className={styles.reviewColumn}>
+                <p>Services</p>
+                <div className={styles.stars}>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                </div>
+              </div>
+              <div className={styles.reviewColumn}>
+                <p>Services</p>
+                <div className={styles.stars}>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                </div>
+              </div>
+              <div className={styles.reviewColumn}>
+                <p>Services</p>
+                <div className={styles.stars}>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                </div>
+              </div>
+              <div className={styles.reviewColumn}>
+                <p>Services</p>
+                <div className={styles.stars}>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                </div>
+              </div>
+              <div className={styles.reviewColumn}>
+                <p>Services</p>
+                <div className={styles.stars}>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                  <button>
+                    <i>
+                      <FaStar />
+                    </i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div className={styles.formReview}>
+              <div className={styles.formRow}>
+                <input type="text" placeholder="Your name" />
+                <input type="text" placeholder="Email address" />
+              </div>
+              <div className={styles.reviewComment}>
+                <textarea placeholder="Write your comment" />
+              </div>
+              <div className={styles.reviewButton}>
+                <button>Submit review</button>
+              </div>
+            </div>
           </div>
         </div>
         <div className={styles.containerRight}>
