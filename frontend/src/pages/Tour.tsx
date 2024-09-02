@@ -61,6 +61,7 @@ const Tour = () => {
 
   useEffect(() => {
     loadTours();
+    window.scrollTo(0, 0);
   }, []);
 
   useEffect(() => {

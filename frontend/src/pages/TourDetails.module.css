@@ -343,17 +343,17 @@
 
 .reviewCategory p{
     font-size: 1.1rem;
-    
+    padding-bottom: 0.4rem;
 }
 
 .reviewCategory div{
-    width: 200px;
     height: 10px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-radius: 6px;
+    border-radius: 5px;
     position: relative;
+    justify-content: flex-start;
 }
 
 .reviewCategory div p{
@@ -367,6 +367,7 @@
     height: 100%; 
     z-index: 1; 
     background-color: #FD5056;
+    width: 40px;
 }
 
 .showReview{
@@ -545,4 +546,9 @@
 .reviewButton button:hover{
     background-color: #dd484d;
 
+}
+
+.slider{
+    padding-top: 2rem;
+    padding-bottom: 4rem;
 }

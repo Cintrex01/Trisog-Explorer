@@ -9,6 +9,7 @@ import { Slider, SliderProps, Slide } from "../components/Slider";
 import TourCard from "../components/TourCard";
 import { api } from "../services/api";
 import TypeCards from "../components/TypeCards";
+import { Link } from "react-router-dom";
 
 interface Review {
   name: string;
@@ -130,16 +131,21 @@ const Home = () => {
           {tours.length > 0 ? (
             tours.slice(0, 8).map((tour) => (
               <Slide key={tour._id}>
-                <TourCard
-                  _id={tour._id}
-                  image={tour.image}
-                  location={tour.place}
-                  title={tour.title}
-                  grade={tour.grade}
-                  reviews={tour.reviewNumber}
-                  duration={tour.duration}
-                  price={tour.price}
-                />
+                <Link
+                  to={`/tourDetails/${tour._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <TourCard
+                    _id={tour._id}
+                    image={tour.image}
+                    location={tour.place}
+                    title={tour.title}
+                    grade={tour.grade}
+                    reviews={tour.reviewNumber}
+                    duration={tour.duration}
+                    price={tour.price}
+                  />
+                </Link>
               </Slide>
             ))
           ) : (
@@ -248,7 +254,9 @@ const Home = () => {
           {categoryData.length > 0 ? (
             categoryData.map((category) => (
               <Slide key={category.type}>
-                <TypeCards categoryData={category} />
+                <Link to={`/tour`} style={{ textDecoration: "none" }}>
+                  <TypeCards categoryData={category} />
+                </Link>
               </Slide>
             ))
           ) : (

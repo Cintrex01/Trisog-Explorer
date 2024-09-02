@@ -11,7 +11,7 @@ import { doSignOut } from "../services/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebase";
 import { IoIosLogOut } from "react-icons/io";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   const [user] = useAuthState(auth);

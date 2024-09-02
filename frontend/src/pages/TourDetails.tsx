@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styles from "./TourDetails.module.css";
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
@@ -13,10 +13,13 @@ import { CiLocationOn } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 import Map from "../components/Map";
 import { FaUserAlt } from "react-icons/fa";
+import { Slide, Slider, SliderProps } from "../components/Slider";
+import TourCard from "../components/TourCard";
 
 const TourDetails = () => {
   const { id } = useParams<{ id: string }>();
   const [tour, setTour] = useState<TourProps | null>(null);
+  const [tours, setTours] = useState<TourProps[]>([]);
   const [adults, setAdults] = useState(0);
   const [kids, setKids] = useState(0);
   const [children, setChildren] = useState(0);
@@ -32,11 +35,24 @@ const TourDetails = () => {
     roomGrade: 0,
   });
 
+  const settingsTour: SliderProps = {
+    autoplay: {
+      delay: 4000,
+    },
+    spaceBetween: 50,
+    slidesPerView: 4,
+    /* navigation: true, */
+    pagination: {
+      clickable: true,
+    },
+  };
+
   useEffect(() => {
     async function fetchTour() {
       try {
         const response = await api.get(`/tours/${id}`);
         setTour(response.data.data);
+        window.scrollTo(0, 0);
       } catch (error) {
         console.error("Error fetching tour details:", error);
       }
@@ -46,11 +62,24 @@ const TourDetails = () => {
   }, [id]);
 
   useEffect(() => {
+    loadTours();
+  }, []);
+
+  useEffect(() => {
     if (tour) {
       const total = (adults + kids + children) * tour.price;
       setTotalPrice(total);
     }
   }, [adults, kids, children, tour]);
+
+  async function loadTours() {
+    try {
+      const response = await api.get("/tours");
+      setTours(response.data.data);
+    } catch (error) {
+      console.error("Error fetching tours:", error);
+    }
+  }
 
   const handleTicketChange = (category: string, change: number) => {
     if (category === "adults") {
@@ -90,6 +119,41 @@ const TourDetails = () => {
       console.error("Error submitting review:", error);
     }
   };
+
+  const averageServicesGrade = tour?.reviews.length
+    ? Math.ceil(
+        tour.reviews.reduce((acc, review) => acc + review.servicesGrade, 0) /
+          tour.reviews.length
+      )
+    : 0;
+
+  const averageLocationsGrade = tour?.reviews.length
+    ? Math.ceil(
+        tour.reviews.reduce((acc, review) => acc + review.locationsGrade, 0) /
+          tour.reviews.length
+      )
+    : 0;
+
+  const averageAmenitiesGrade = tour?.reviews.length
+    ? Math.ceil(
+        tour.reviews.reduce((acc, review) => acc + review.amenitiesGrade, 0) /
+          tour.reviews.length
+      )
+    : 0;
+
+  const averagePriceGrade = tour?.reviews.length
+    ? Math.ceil(
+        tour.reviews.reduce((acc, review) => acc + review.pricesGrade, 0) /
+          tour.reviews.length
+      )
+    : 0;
+
+  const averageRoomGrade = tour?.reviews.length
+    ? Math.ceil(
+        tour.reviews.reduce((acc, review) => acc + review.roomGrade, 0) /
+          tour.reviews.length
+      )
+    : 0;
 
   if (!tour) return <p>Loading...</p>;
 
@@ -193,11 +257,14 @@ const TourDetails = () => {
                     <p>Services</p>
                     <div>
                       <div>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
-                        <div className={styles.bar4}></div>
-                        <div className={styles.bar5}></div>
+                        {Array.from({ length: averageServicesGrade }).map(
+                          (_, index) => (
+                            <div
+                              className={styles[`bar${index + 1}`]}
+                              key={index}
+                            ></div>
+                          )
+                        )}
                       </div>
                       {tour.reviews.length > 0 ? (
                         (() => {
@@ -219,11 +286,14 @@ const TourDetails = () => {
                     <p>Locations</p>
                     <div>
                       <div>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
-                        <div className={styles.bar4}></div>
-                        <div className={styles.bar5}></div>
+                        {Array.from({ length: averageLocationsGrade }).map(
+                          (_, index) => (
+                            <div
+                              className={styles[`bar${index + 1}`]}
+                              key={index}
+                            ></div>
+                          )
+                        )}
                       </div>
                       {tour.reviews.length > 0 ? (
                         (() => {
@@ -245,11 +315,14 @@ const TourDetails = () => {
                     <p>Amenities</p>
                     <div>
                       <div>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
-                        <div className={styles.bar4}></div>
-                        <div className={styles.bar5}></div>
+                        {Array.from({ length: averageAmenitiesGrade }).map(
+                          (_, index) => (
+                            <div
+                              className={styles[`bar${index + 1}`]}
+                              key={index}
+                            ></div>
+                          )
+                        )}
                       </div>
                       {tour.reviews.length > 0 ? (
                         (() => {
@@ -273,11 +346,14 @@ const TourDetails = () => {
                     <p>Prices</p>
                     <div>
                       <div>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
-                        <div className={styles.bar4}></div>
-                        <div className={styles.bar5}></div>
+                        {Array.from({ length: averagePriceGrade }).map(
+                          (_, index) => (
+                            <div
+                              className={styles[`bar${index + 1}`]}
+                              key={index}
+                            ></div>
+                          )
+                        )}
                       </div>
                       {tour.reviews.length > 0 ? (
                         (() => {
@@ -299,11 +375,14 @@ const TourDetails = () => {
                     <p>Room comfort</p>
                     <div>
                       <div>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
-                        <div className={styles.bar4}></div>
-                        <div className={styles.bar5}></div>
+                        {Array.from({ length: averageRoomGrade }).map(
+                          (_, index) => (
+                            <div
+                              className={styles[`bar${index + 1}`]}
+                              key={index}
+                            ></div>
+                          )
+                        )}
                       </div>
                       {tour.reviews.length > 0 ? (
                         (() => {
@@ -544,6 +623,36 @@ const TourDetails = () => {
             </div>
           </div>
         </div>
+      </div>
+      <h2 style={{ textAlign: "center", fontSize: "2rem" }}>
+        You may also like...
+      </h2>
+      <div className={styles.slider}>
+        <Slider settings={settingsTour}>
+          {tours.length > 0 ? (
+            tours.slice(0, 8).map((tour) => (
+              <Slide key={tour._id}>
+                <Link
+                  to={`/tourDetails/${tour._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <TourCard
+                    _id={tour._id}
+                    image={tour.image}
+                    location={tour.place}
+                    title={tour.title}
+                    grade={tour.grade}
+                    reviews={tour.reviewNumber}
+                    duration={tour.duration}
+                    price={tour.price}
+                  />
+                </Link>
+              </Slide>
+            ))
+          ) : (
+            <p>No tours available</p>
+          )}
+        </Slider>
       </div>
       <Footer />
     </>
