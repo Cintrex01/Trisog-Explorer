@@ -21,6 +21,16 @@ const TourDetails = () => {
   const [kids, setKids] = useState(0);
   const [children, setChildren] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [reviewData, setReviewData] = useState({
+    name: "",
+    email: "",
+    comment: "",
+    servicesGrade: 0,
+    locationsGrade: 0,
+    amenitiesGrade: 0,
+    pricesGrade: 0,
+    roomGrade: 0,
+  });
 
   useEffect(() => {
     async function fetchTour() {
@@ -49,6 +59,35 @@ const TourDetails = () => {
       setKids((prev) => Math.max(0, prev + change));
     } else if (category === "children") {
       setChildren((prev) => Math.max(0, prev + change));
+    }
+  };
+
+  const handleReviewChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setReviewData({
+      ...reviewData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleReviewSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    try {
+      const response = await api.post(`/tours/${id}/reviews`, reviewData);
+      setTour(response.data.data);
+      setReviewData({
+        name: "",
+        email: "",
+        comment: "",
+        servicesGrade: 0,
+        locationsGrade: 0,
+        amenitiesGrade: 0,
+        pricesGrade: 0,
+        roomGrade: 0,
+      });
+    } catch (error) {
+      console.error("Error submitting review:", error);
     }
   };
 
@@ -160,7 +199,20 @@ const TourDetails = () => {
                         <div className={styles.bar4}></div>
                         <div className={styles.bar5}></div>
                       </div>
-                      <p>4</p>
+                      {tour.reviews.length > 0 ? (
+                        (() => {
+                          const totalServicesGrade = tour.reviews.reduce(
+                            (acc, review) => acc + review.servicesGrade,
+                            0
+                          );
+                          const averageServicesGrade = Math.ceil(
+                            totalServicesGrade / tour.reviews.length
+                          );
+                          return <p>{averageServicesGrade}</p>;
+                        })()
+                      ) : (
+                        <p>No reviews yet.</p>
+                      )}
                     </div>
                   </div>
                   <div className={styles.reviewCategory}>
@@ -173,7 +225,20 @@ const TourDetails = () => {
                         <div className={styles.bar4}></div>
                         <div className={styles.bar5}></div>
                       </div>
-                      <p>4</p>
+                      {tour.reviews.length > 0 ? (
+                        (() => {
+                          const totalLocationsGrade = tour.reviews.reduce(
+                            (acc, review) => acc + review.locationsGrade,
+                            0
+                          );
+                          const averageLocationsGrade = Math.ceil(
+                            totalLocationsGrade / tour.reviews.length
+                          );
+                          return <p>{averageLocationsGrade}</p>;
+                        })()
+                      ) : (
+                        <p>No reviews yet.</p>
+                      )}
                     </div>
                   </div>
                   <div className={styles.reviewCategory}>
@@ -186,7 +251,20 @@ const TourDetails = () => {
                         <div className={styles.bar4}></div>
                         <div className={styles.bar5}></div>
                       </div>
-                      <p>4</p>
+                      {tour.reviews.length > 0 ? (
+                        (() => {
+                          const totalAmenitiesGrade = tour.reviews.reduce(
+                            (acc, review) => acc + review.amenitiesGrade,
+                            0
+                          );
+                          const averageAmenitiesGrade = Math.ceil(
+                            totalAmenitiesGrade / tour.reviews.length
+                          );
+                          return <p>{averageAmenitiesGrade}</p>;
+                        })()
+                      ) : (
+                        <p>No reviews yet.</p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -201,20 +279,20 @@ const TourDetails = () => {
                         <div className={styles.bar4}></div>
                         <div className={styles.bar5}></div>
                       </div>
-                      <p>4</p>
-                    </div>
-                  </div>
-                  <div className={styles.reviewCategory}>
-                    <p>Food</p>
-                    <div>
-                      <div>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
-                        <div className={styles.bar4}></div>
-                        <div className={styles.bar5}></div>
-                      </div>
-                      <p>4</p>
+                      {tour.reviews.length > 0 ? (
+                        (() => {
+                          const totalPriceGrade = tour.reviews.reduce(
+                            (acc, review) => acc + review.pricesGrade,
+                            0
+                          );
+                          const averagePriceGrade = Math.ceil(
+                            totalPriceGrade / tour.reviews.length
+                          );
+                          return <p>{averagePriceGrade}</p>;
+                        })()
+                      ) : (
+                        <p>No reviews yet.</p>
+                      )}
                     </div>
                   </div>
                   <div className={styles.reviewCategory}>
@@ -227,210 +305,174 @@ const TourDetails = () => {
                         <div className={styles.bar4}></div>
                         <div className={styles.bar5}></div>
                       </div>
-                      <p>4</p>
+                      {tour.reviews.length > 0 ? (
+                        (() => {
+                          const totalRoomGrade = tour.reviews.reduce(
+                            (acc, review) => acc + review.roomGrade,
+                            0
+                          );
+                          const averageRoomGrade = Math.ceil(
+                            totalRoomGrade / tour.reviews.length
+                          );
+                          return <p>{averageRoomGrade}</p>;
+                        })()
+                      ) : (
+                        <p>No reviews yet.</p>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          {/* Seções de reviews */}
           <div className={styles.showReview}>
-            <h2>Showing {tour.reviewNumber} reviews</h2>
-            <div className={styles.review}>
-              <div className={styles.reviewPhoto}>
-                <div>
-                  <i>
-                    <FaUserAlt />
-                  </i>
-                </div>
-              </div>
-              <div className={styles.reviewInfo}>
-                <p className={styles.reviewDate}>March 20, 2022</p>
-                <h2>Sindy Simmons</h2>
-                <div className={styles.gradeReviewNumber}>
-                  <div>
-                    <i>
-                      <FaStar />
-                    </i>
-                    4.8
+            <h2>Reviews</h2>
+            {tour.reviews.length > 0 ? (
+              tour.reviews.map((review, index) => (
+                <div className={styles.review} key={index}>
+                  <div className={styles.reviewPhoto}>
+                    <div>
+                      <i>
+                        <FaUserAlt />
+                      </i>
+                    </div>
                   </div>
-                  <p>15 Reviews</p>
+                  <div className={styles.reviewInfo}>
+                    <p className={styles.reviewDate}>
+                      {new Date(review.date).toLocaleDateString()}
+                    </p>
+                    <h2>{review.name}</h2>
+                    <div className={styles.gradeReviewNumber}>
+                      <div>
+                        <i>
+                          <FaStar />
+                        </i>
+                        {review.totalGrade}
+                      </div>
+                    </div>
+                    <p>{review.comment}</p>
+                  </div>
                 </div>
-                <p>
-                  Objectively productivate just in time information with dynamic
-                  channels. Energistically exploit seamless growth strategies
-                  after 24/7 experiences.
-                </p>
-              </div>
-            </div>
+              ))
+            ) : (
+              <p>No reviews yet.</p>
+            )}
           </div>
-          <div className={styles.addReview}>
-            <h2>Add a review</h2>
-            <div className={styles.reviewRow}>
-              <div className={styles.reviewColumn}>
-                <p>Services</p>
-                <div className={styles.stars}>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
+          <form onSubmit={handleReviewSubmit} className={styles.reviewForm}>
+            <div className={styles.addReview}>
+              <h2>Add a review</h2>
+              <div className={styles.reviewRow}>
+                <div className={styles.reviewColumn}>
+                  <p>Services</p>
+                  <div className={styles.stars}>
+                    <input
+                      type="number"
+                      name="servicesGrade"
+                      placeholder="Services Grade"
+                      min="1"
+                      max="5"
+                      value={reviewData.servicesGrade}
+                      onChange={handleReviewChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className={styles.reviewColumn}>
+                  <p>Locations</p>
+                  <div className={styles.stars}>
+                    <input
+                      type="number"
+                      name="locationsGrade"
+                      placeholder="Locations Grade"
+                      min="1"
+                      max="5"
+                      value={reviewData.locationsGrade}
+                      onChange={handleReviewChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className={styles.reviewColumn}>
+                  <p>Amenities</p>
+                  <div className={styles.stars}>
+                    <input
+                      type="number"
+                      name="amenitiesGrade"
+                      placeholder="Amenities Grade"
+                      min="1"
+                      max="5"
+                      value={reviewData.amenitiesGrade}
+                      onChange={handleReviewChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className={styles.reviewColumn}>
+                  <p>Prices</p>
+                  <div className={styles.stars}>
+                    <input
+                      type="number"
+                      name="pricesGrade"
+                      placeholder="Prices Grade"
+                      min="1"
+                      max="5"
+                      value={reviewData.pricesGrade}
+                      onChange={handleReviewChange}
+                      required
+                    />
+                  </div>
+                </div>
+                <div className={styles.reviewColumn}>
+                  <p>Room confort</p>
+                  <div className={styles.stars}>
+                    <input
+                      type="number"
+                      name="roomGrade"
+                      placeholder="Room Grade"
+                      min="1"
+                      max="5"
+                      value={reviewData.roomGrade}
+                      onChange={handleReviewChange}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-              <div className={styles.reviewColumn}>
-                <p>Services</p>
-                <div className={styles.stars}>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
+              <div className={styles.formReview}>
+                <div className={styles.formRow}>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={reviewData.name}
+                    onChange={handleReviewChange}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={reviewData.email}
+                    onChange={handleReviewChange}
+                    required
+                  />
                 </div>
-              </div>
-              <div className={styles.reviewColumn}>
-                <p>Services</p>
-                <div className={styles.stars}>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
+                <div className={styles.reviewComment}>
+                  <textarea
+                    name="comment"
+                    placeholder="Your Comment"
+                    value={reviewData.comment}
+                    onChange={handleReviewChange}
+                    required
+                  />
                 </div>
-              </div>
-              <div className={styles.reviewColumn}>
-                <p>Services</p>
-                <div className={styles.stars}>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                </div>
-              </div>
-              <div className={styles.reviewColumn}>
-                <p>Services</p>
-                <div className={styles.stars}>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
-                  <button>
-                    <i>
-                      <FaStar />
-                    </i>
-                  </button>
+                <div className={styles.reviewButton}>
+                  <button type="submit">Submit review</button>
                 </div>
               </div>
             </div>
-            <div className={styles.formReview}>
-              <div className={styles.formRow}>
-                <input type="text" placeholder="Your name" />
-                <input type="text" placeholder="Email address" />
-              </div>
-              <div className={styles.reviewComment}>
-                <textarea placeholder="Write your comment" />
-              </div>
-              <div className={styles.reviewButton}>
-                <button>Submit review</button>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
         <div className={styles.containerRight}>
           <div className={styles.priceBox}>

@@ -8,4 +8,6 @@ router.get("/", tours_1.getTours);
 router.get("/:id", tours_1.getTourById);
 router.patch("/:id", tours_1.updateTour);
 router.delete("/:id", tours_1.deleteTour);
+router.post("/:id/reviews", tours_1.addReview);
+router.get("/:id/reviews", tours_1.getReviewsByTourId);
 exports.default = router;

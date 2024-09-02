@@ -1,129 +1,34 @@
 import * as mongoose from "mongoose";
 
-import { Model } from "mongoose";
-
-type TourType = TourModel & mongoose.Document
-
 export interface Review {
-    name:{
-        type:string,
-        required:true;
-    };
-    email:{
-        type:string,
-        required:true;
-    };
-    comment:{
-        type:string,
-        required:true;
-    };
-    servicesGrade:{
-        type:number,
-        required:true;
-    }
-    locationsGrade:{
-        type:number,
-        required:true;
-    }
-    amenitiesGrade:{
-        type:number,
-        required:true;
-    }
-    pricesGrade:{
-        type:number,
-        required:true;
-    }
-    roomGrade:{
-        type:number,
-        required:true;
-    }
-    totalGrade:{
-        type:number,
-        required:true;
-    }
-    date:{
-        type:Date,
-        required:true;
-    }
+    name: string;
+    email: string;
+    comment: string;
+    servicesGrade: number;
+    locationsGrade: number;
+    amenitiesGrade: number;
+    pricesGrade: number;
+    roomGrade: number;
+    totalGrade: number;
+    date: Date;
 }
 
-export interface TourModel{
-
-    title:{
-        type:string,
-        required:true
-    };
-
-    place:{
-        type:string;
-        required:true;
-    };
-
-    continent:{
-        type:string;
-        required:true;
-    };
-
-    type:{
-        type:string;
-        required:true;
-    };
-
-    category:{
-        type:string,
-        required:true;
-    };
-
-    grade:{
-        type:string,
-        required:true;
-    };
-
-    reviewNumber:{
-        type:number,
-        required:true;
-    };
-
-    reviews:{
-        type:Review[],
-        required:true;
-    };
-
-    startDay:{
-        type:Date,
-        required:true;
-    };
-
-    duration:{
-        type:number,
-        required:true;
-    };
-
-    price:{
-        type:number,
-        required:true;
-    };
-
-    maxPeople:{
-        type:number,
-        required:true;
-    };
-
-    minAge:{
-        type:number,
-        required:true;
-    };
-
-    image:{
-        type:string,
-        required:true;
-    };
-
-    description:{
-        type:string,
-        required:true;
-    }
-    
+export interface TourModel {
+    title: string;
+    place: string;
+    continent: string;
+    type: string;
+    category: string;
+    grade: number;
+    reviewNumber: number;
+    reviews: Review[]; 
+    startDay: Date;
+    duration: number;
+    price: number;
+    maxPeople: number;
+    minAge: number;
+    image: string;
+    description: string;
 }
 
 const ReviewSchema = new mongoose.Schema({
@@ -147,7 +52,7 @@ const ToursSchema = new mongoose.Schema({
     category: { type: String, required: true },
     grade: { type: Number, required: true },
     reviewNumber: { type: Number, required: true },
-    reviews: { type: [ReviewSchema], required: true },
+    reviews: { type: [ReviewSchema], required: true }, 
     startDay: { type: Date, required: true },
     duration: { type: Number, required: true },
     price: { type: Number, required: true },
@@ -157,6 +62,6 @@ const ToursSchema = new mongoose.Schema({
     description: {type: String, required: true}
 });
 
-const Tour: Model<TourType> = mongoose.model<TourType>('Tour', ToursSchema);
+const Tour = mongoose.model<TourModel & mongoose.Document>('Tour', ToursSchema);
 
 export default Tour;

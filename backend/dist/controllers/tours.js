@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteTour = exports.updateTour = exports.getTourById = exports.getTours = exports.createTour = void 0;
+exports.getReviewsByTourId = exports.addReview = exports.deleteTour = exports.updateTour = exports.getTourById = exports.getTours = exports.createTour = void 0;
 const tours_1 = __importDefault(require("../models/tours"));
 // Criar um novo tour
 const createTour = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -83,3 +83,64 @@ const deleteTour = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.deleteTour = deleteTour;
+const addReview = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { name, email, comment, servicesGrade, locationsGrade, amenitiesGrade, roomGrade, pricesGrade } = req.body;
+    try {
+        const tour = yield tours_1.default.findById(id);
+        if (!tour) {
+            return res.status(404).json({ message: "Tour not found" });
+        }
+        // Converta os valores para números
+        const servicesGradeNum = parseInt(servicesGrade, 10);
+        const locationsGradeNum = parseInt(locationsGrade, 10);
+        const amenitiesGradeNum = parseInt(amenitiesGrade, 10);
+        const roomGradeNum = parseInt(roomGrade, 10);
+        const pricesGradeNum = parseInt(pricesGrade, 10);
+        console.log({
+            servicesGrade: servicesGradeNum,
+            locationsGrade: locationsGradeNum,
+            amenitiesGrade: amenitiesGradeNum,
+            roomGrade: roomGradeNum,
+            pricesGrade: pricesGradeNum,
+        });
+        // Use os valores convertidos para calcular o totalGrade
+        const totalGrade = Math.round((servicesGradeNum + locationsGradeNum + amenitiesGradeNum + roomGradeNum + pricesGradeNum) / 5);
+        const newReview = {
+            name,
+            email,
+            comment,
+            servicesGrade: servicesGradeNum,
+            locationsGrade: locationsGradeNum,
+            amenitiesGrade: amenitiesGradeNum,
+            roomGrade: roomGradeNum,
+            pricesGrade: pricesGradeNum,
+            totalGrade,
+            date: new Date(),
+        };
+        tour.reviews.push(newReview); // Agora o 'push' deve funcionar
+        tour.reviewNumber = tour.reviews.length;
+        const gradesSum = tour.reviews.reduce((acc, review) => acc + review.totalGrade, 0);
+        tour.grade = Math.round(gradesSum / tour.reviewNumber);
+        yield tour.save();
+        res.status(201).json({ message: "Review added successfully!", data: tour });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.addReview = addReview;
+const getReviewsByTourId = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    try {
+        const tour = yield tours_1.default.findById(id);
+        if (!tour) {
+            return res.status(404).json({ message: "Tour not found" });
+        }
+        res.status(200).json({ reviews: tour.reviews });
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.getReviewsByTourId = getReviewsByTourId;
