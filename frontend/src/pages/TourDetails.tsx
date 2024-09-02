@@ -248,7 +248,11 @@ const TourDetails = () => {
                   <i>
                     <FaStar />
                   </i>
-                  Excellent
+                  {tour.grade === 5 && "Excellent"}
+                  {tour.grade === 4 && "Very Good"}
+                  {tour.grade === 3 && "Good"}
+                  {tour.grade === 2 && "Bad"}
+                  {tour.grade === 1 && "Very Bad"}
                 </p>
               </div>
               <div className={styles.averageReviewsNumbers}>
@@ -256,7 +260,7 @@ const TourDetails = () => {
                   <div className={styles.reviewCategory}>
                     <p>Services</p>
                     <div>
-                      <div>
+                      <div className={styles.backgroundReview}>
                         {Array.from({ length: averageServicesGrade }).map(
                           (_, index) => (
                             <div
@@ -266,20 +270,22 @@ const TourDetails = () => {
                           )
                         )}
                       </div>
-                      {tour.reviews.length > 0 ? (
-                        (() => {
-                          const totalServicesGrade = tour.reviews.reduce(
-                            (acc, review) => acc + review.servicesGrade,
-                            0
-                          );
-                          const averageServicesGrade = Math.ceil(
-                            totalServicesGrade / tour.reviews.length
-                          );
-                          return <p>{averageServicesGrade}</p>;
-                        })()
-                      ) : (
-                        <p>No reviews yet.</p>
-                      )}
+                      <div>
+                        {tour.reviews.length > 0 ? (
+                          (() => {
+                            const totalServicesGrade = tour.reviews.reduce(
+                              (acc, review) => acc + review.servicesGrade,
+                              0
+                            );
+                            const averageServicesGrade = Math.ceil(
+                              totalServicesGrade / tour.reviews.length
+                            );
+                            return <p>{averageServicesGrade}</p>;
+                          })()
+                        ) : (
+                          <p>No reviews yet.</p>
+                        )}
+                      </div>
                     </div>
                   </div>
                   <div className={styles.reviewCategory}>

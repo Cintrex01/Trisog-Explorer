@@ -7,6 +7,8 @@ import { CiSearch } from "react-icons/ci";
 import { api } from "../services/api";
 import TourCard from "../components/TourCard";
 import { Link } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
 
 interface Review {
   name: string;
@@ -63,6 +65,30 @@ const Tour = () => {
     loadTours();
     window.scrollTo(0, 0);
   }, []);
+
+  const itemsPerPage = 9;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(tours.length / itemsPerPage);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentTours = tours.slice(indexOfFirstItem, indexOfLastItem);
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pageNumbers.push(
+        <button
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className={currentPage === i ? "active" : ""}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pageNumbers;
+  };
 
   useEffect(() => {
     if (tours.length > 0) {
@@ -203,18 +229,9 @@ const Tour = () => {
             </div>
           </div>
         </div>
-        <div
-          className={styles.containerPagination}
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            flexDirection: "row",
-            gap: "4rem",
-            width: "85%",
-          }}
-        >
-          {tours.length > 0 ? (
-            tours.map((tour) => (
+        <div className={styles.containerPagination}>
+          {currentTours.length > 0 ? (
+            currentTours.map((tour) => (
               <Link
                 to={`/tourDetails/${tour._id}`}
                 style={{ textDecoration: "none" }}
@@ -236,6 +253,25 @@ const Tour = () => {
           ) : (
             <p>No tours available</p>
           )}
+          <div className={styles.pagination}>
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <i>
+                <FaChevronLeft />
+              </i>
+            </button>
+            {renderPageNumbers()}
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage === totalPages}
+            >
+              <i>
+                <FaChevronRight />
+              </i>
+            </button>
+          </div>
         </div>
       </div>
       <Footer />

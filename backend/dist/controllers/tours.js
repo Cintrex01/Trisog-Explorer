@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getReviewsByTourId = exports.addReview = exports.deleteTour = exports.updateTour = exports.getTourById = exports.getTours = exports.createTour = void 0;
 const tours_1 = __importDefault(require("../models/tours"));
-// Criar um novo tour
 const createTour = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
     try {
@@ -26,7 +25,6 @@ const createTour = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.createTour = createTour;
-// Obter todos os tours
 const getTours = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tours = yield tours_1.default.find();
@@ -37,7 +35,6 @@ const getTours = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.getTours = getTours;
-// Obter um tour por ID
 const getTourById = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
@@ -52,7 +49,6 @@ const getTourById = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
     }
 });
 exports.getTourById = getTourById;
-// Atualizar um tour por ID
 const updateTour = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const updates = req.body;
@@ -68,7 +64,6 @@ const updateTour = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.updateTour = updateTour;
-// Deletar um tour por ID
 const deleteTour = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
@@ -91,20 +86,11 @@ const addReview = (req, res, next) => __awaiter(void 0, void 0, void 0, function
         if (!tour) {
             return res.status(404).json({ message: "Tour not found" });
         }
-        // Converta os valores para números
         const servicesGradeNum = parseInt(servicesGrade, 10);
         const locationsGradeNum = parseInt(locationsGrade, 10);
         const amenitiesGradeNum = parseInt(amenitiesGrade, 10);
         const roomGradeNum = parseInt(roomGrade, 10);
         const pricesGradeNum = parseInt(pricesGrade, 10);
-        console.log({
-            servicesGrade: servicesGradeNum,
-            locationsGrade: locationsGradeNum,
-            amenitiesGrade: amenitiesGradeNum,
-            roomGrade: roomGradeNum,
-            pricesGrade: pricesGradeNum,
-        });
-        // Use os valores convertidos para calcular o totalGrade
         const totalGrade = Math.round((servicesGradeNum + locationsGradeNum + amenitiesGradeNum + roomGradeNum + pricesGradeNum) / 5);
         const newReview = {
             name,
@@ -118,7 +104,7 @@ const addReview = (req, res, next) => __awaiter(void 0, void 0, void 0, function
             totalGrade,
             date: new Date(),
         };
-        tour.reviews.push(newReview); // Agora o 'push' deve funcionar
+        tour.reviews.push(newReview);
         tour.reviewNumber = tour.reviews.length;
         const gradesSum = tour.reviews.reduce((acc, review) => acc + review.totalGrade, 0);
         tour.grade = Math.round(gradesSum / tour.reviewNumber);
