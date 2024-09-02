@@ -11,7 +11,7 @@ import { doSignOut } from "../services/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebase";
 import { IoIosLogOut } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -61,23 +61,31 @@ const Header = () => {
           <h2>Trisog</h2>
         </div>
         <div className={styles.links}>
-          <Link
-            style={{ textDecoration: "none" }}
+          <NavLink
             to="/home"
-            className={styles.customButton}
+            className={({ isActive }) =>
+              isActive
+                ? `${styles.customButton} ${styles.activeLink}`
+                : styles.customButton
+            }
+            style={{ textDecoration: "none" }}
           >
             <span className={styles.clickableText}>Home</span>
-          </Link>
+          </NavLink>
           <button className={styles.customButton}>
             <span className={styles.clickableText}>About</span>
           </button>
-          <Link
-            style={{ textDecoration: "none" }}
+          <NavLink
             to="/tour"
-            className={styles.customButton}
+            className={({ isActive }) =>
+              isActive
+                ? `${styles.customButton} ${styles.activeLink}`
+                : styles.customButton
+            }
+            style={{ textDecoration: "none" }}
           >
             <span className={styles.clickableText}>Tours</span>
-          </Link>
+          </NavLink>
           <button className={styles.customButton}>
             <span className={styles.clickableText}>Destination</span>
           </button>
