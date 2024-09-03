@@ -225,13 +225,14 @@
 .pagColumn{
     display: flex;
     flex-direction: column;
+    width: 1100px;
 }
 
 .containerPagination{
     display: flex;
     flex-direction: row;
-    justify-content: start;
-    width: 1100px;
+    justify-content: space-between;
+    
     flex-wrap: wrap;
     gap: 3rem;
 }
@@ -267,4 +268,28 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.sort{
+    display: flex;
+    justify-Content: space-between;
+    padding-Bottom: 2rem;
+    align-Items: center;
+    font-Size: 1.1rem;
+    color: gray;
+}
+
+.sort div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sort div select{
+    height: 30px;
+    width: 160px;
+    color: gray;
+    font-size: 1.1rem;
+    padding-left: 0.2rem;
 }

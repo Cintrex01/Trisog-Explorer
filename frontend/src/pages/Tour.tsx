@@ -9,6 +9,7 @@ import TourCard from "../components/TourCard";
 import { Link } from "react-router-dom";
 import { FaChevronLeft } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
+import { FaSortAlphaDown } from "react-icons/fa";
 
 interface Review {
   name: string;
@@ -67,7 +68,7 @@ const Tour = () => {
     []
   );
   const [selectedGrades, setSelectedGrades] = useState<number[]>([]);
-
+  const [sortBy, setSortBy] = useState<string>("select");
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentTours = filteredTours.slice(indexOfFirstItem, indexOfLastItem);
@@ -90,6 +91,7 @@ const Tour = () => {
     selectedContinents,
     selectedDestinations,
     price,
+    sortBy,
   ]);
 
   const renderPageNumbers = () => {
@@ -182,6 +184,12 @@ const Tour = () => {
     if (selectedGrades.length > 0) {
       const minGrade = Math.min(...selectedGrades);
       filtered = filtered.filter((tour) => tour.grade >= minGrade);
+    }
+
+    if (sortBy === "title") {
+      filtered.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (sortBy === "price") {
+      filtered.sort((a, b) => a.price - b.price);
     }
 
     setFilteredTours(filtered);
@@ -297,6 +305,25 @@ const Tour = () => {
           </div>
         </div>
         <div className={styles.pagColumn}>
+          <div className={styles.sort}>
+            <p>{currentTours.length} tours</p>
+            <div>
+              <p>
+                Sort by{" "}
+                <i>
+                  <FaSortAlphaDown />
+                </i>
+              </p>
+              <select
+                onChange={(e) => setSortBy(e.target.value)}
+                value={sortBy}
+              >
+                <option value="">Select</option>
+                <option value="title">Title</option>
+                <option value="price">Price</option>
+              </select>
+            </div>
+          </div>
           <div className={styles.containerPagination}>
             {currentTours.length > 0 ? (
               currentTours.map((tour) => (
