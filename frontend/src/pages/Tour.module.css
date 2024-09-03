@@ -222,17 +222,22 @@
     padding-bottom: 1rem;
 }
 
+.pagColumn{
+    display: flex;
+    flex-direction: column;
+}
+
 .containerPagination{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: start;
     width: 1100px;
     flex-wrap: wrap;
     gap: 3rem;
-    
 }
 
 .pagination{
+    padding-top: 3rem;
     display: flex;
     flex-direction: row;
     align-items: center;

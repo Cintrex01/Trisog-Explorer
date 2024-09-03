@@ -50,12 +50,27 @@ interface CategoryData {
 
 const Tour = () => {
   const [tours, setTours] = useState<TourProps[]>([]);
+  const [filteredTours, setFilteredTours] = useState<TourProps[]>([]);
   const [categoryData, setCategoryData] = useState<CategoryData[]>([]);
   const [price, setPrice] = useState(0);
   const [continents, setContinents] = useState<string[]>([]);
   const [destinations, setDestinations] = useState<{ [key: string]: string[] }>(
     {}
   );
+  const itemsPerPage = 9;
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(filteredTours.length / itemsPerPage);
+
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedContinents, setSelectedContinents] = useState<string[]>([]);
+  const [selectedDestinations, setSelectedDestinations] = useState<string[]>(
+    []
+  );
+  const [selectedGrades, setSelectedGrades] = useState<number[]>([]);
+
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentTours = filteredTours.slice(indexOfFirstItem, indexOfLastItem);
 
   const handleRangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(event.target.value));
@@ -66,13 +81,16 @@ const Tour = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const itemsPerPage = 9;
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = Math.ceil(tours.length / itemsPerPage);
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentTours = tours.slice(indexOfFirstItem, indexOfLastItem);
+  useEffect(() => {
+    filterTours();
+  }, [
+    selectedGrades,
+    tours,
+    selectedCategories,
+    selectedContinents,
+    selectedDestinations,
+    price,
+  ]);
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
@@ -136,6 +154,59 @@ const Tour = () => {
     }
   }
 
+  const filterTours = () => {
+    let filtered = [...tours];
+
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter((tour) =>
+        selectedCategories.includes(tour.type)
+      );
+    }
+
+    if (selectedContinents.length > 0) {
+      filtered = filtered.filter((tour) =>
+        selectedContinents.includes(tour.continent)
+      );
+    }
+
+    if (selectedDestinations.length > 0) {
+      filtered = filtered.filter((tour) =>
+        selectedDestinations.includes(tour.place)
+      );
+    }
+
+    if (price > 0) {
+      filtered = filtered.filter((tour) => tour.price <= price);
+    }
+
+    if (selectedGrades.length > 0) {
+      const minGrade = Math.min(...selectedGrades);
+      filtered = filtered.filter((tour) => tour.grade >= minGrade);
+    }
+
+    setFilteredTours(filtered);
+  };
+
+  const handleGradeChange = (grade: number) => {
+    setSelectedGrades((prev) =>
+      prev.includes(grade) ? prev.filter((g) => g !== grade) : [...prev, grade]
+    );
+  };
+
+  const handleCategoryChange = (type: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(type) ? prev.filter((cat) => cat !== type) : [...prev, type]
+    );
+  };
+
+  const handleDestinationChange = (place: string) => {
+    setSelectedDestinations((prev) =>
+      prev.includes(place)
+        ? prev.filter((dest) => dest !== place)
+        : [...prev, place]
+    );
+  };
+
   return (
     <>
       <Header />
@@ -177,7 +248,10 @@ const Tour = () => {
             {categoryData.length > 0 ? (
               categoryData.map((tour) => (
                 <div className={styles.checkOption} key={tour.type}>
-                  <input type="checkbox" name="" id="" />
+                  <input
+                    type="checkbox"
+                    onChange={() => handleCategoryChange(tour.type)}
+                  />
                   <p>{tour.type}</p>
                 </div>
               ))
@@ -193,7 +267,10 @@ const Tour = () => {
                   <label htmlFor="">{continent}</label>
                   {destinations[continent].map((place) => (
                     <div className={styles.checkOption} key={place}>
-                      <input type="checkbox" name="" id="" />
+                      <input
+                        type="checkbox"
+                        onChange={() => handleDestinationChange(place)}
+                      />
                       <p>{place}</p>
                     </div>
                   ))}
@@ -207,52 +284,44 @@ const Tour = () => {
             <div className={styles.gradeBoxLabel}>
               <label>Reviews</label>
             </div>
-            <div className={styles.checkOption}>
-              <input type="checkbox" name="" id="" />
-              <p>5 Stars</p>
-            </div>
-            <div className={styles.checkOption}>
-              <input type="checkbox" name="" id="" />
-              <p>4 Stars & Up</p>
-            </div>
-            <div className={styles.checkOption}>
-              <input type="checkbox" name="" id="" />
-              <p>3 Stars & Up</p>
-            </div>
-            <div className={styles.checkOption}>
-              <input type="checkbox" name="" id="" />
-              <p>2 Stars & Up</p>
-            </div>
-            <div className={styles.checkOption}>
-              <input type="checkbox" name="" id="" />
-              <p>1 Stars & Up</p>
-            </div>
+            {[5, 4, 3, 2, 1].map((grade) => (
+              <div className={styles.checkOption} key={grade}>
+                <input
+                  type="checkbox"
+                  onChange={() => handleGradeChange(grade)}
+                  checked={selectedGrades.includes(grade)}
+                />
+                <p>{grade} Stars & Up</p>
+              </div>
+            ))}
           </div>
         </div>
-        <div className={styles.containerPagination}>
-          {currentTours.length > 0 ? (
-            currentTours.map((tour) => (
-              <Link
-                to={`/tourDetails/${tour._id}`}
-                style={{ textDecoration: "none" }}
-              >
-                <div key={tour._id}>
-                  <TourCard
-                    _id={tour._id}
-                    image={tour.image}
-                    location={tour.place}
-                    title={tour.title}
-                    grade={tour.grade}
-                    reviews={tour.reviewNumber}
-                    duration={tour.duration}
-                    price={tour.price}
-                  />
-                </div>
-              </Link>
-            ))
-          ) : (
-            <p>No tours available</p>
-          )}
+        <div className={styles.pagColumn}>
+          <div className={styles.containerPagination}>
+            {currentTours.length > 0 ? (
+              currentTours.map((tour) => (
+                <Link
+                  to={`/tourDetails/${tour._id}`}
+                  style={{ textDecoration: "none" }}
+                >
+                  <div key={tour._id}>
+                    <TourCard
+                      _id={tour._id}
+                      image={tour.image}
+                      location={tour.place}
+                      title={tour.title}
+                      grade={tour.grade}
+                      reviews={tour.reviewNumber}
+                      duration={tour.duration}
+                      price={tour.price}
+                    />
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p>No tours available</p>
+            )}
+          </div>
           <div className={styles.pagination}>
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
