@@ -69,7 +69,7 @@ const Tour = () => {
   );
   const [selectedGrades, setSelectedGrades] = useState<number[]>([]);
   const [sortBy, setSortBy] = useState<string>("select");
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentTours = filteredTours.slice(indexOfFirstItem, indexOfLastItem);
@@ -223,9 +223,13 @@ const Tour = () => {
     );
   };
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+  };
+
   return (
     <>
-      <Header />
+      <Header onSearch={handleSearch} />
       <div className={styles.titleContainer}>
         <h1 className={styles.title}>Tour Package</h1>
         <h3 className={styles.subtitle}>

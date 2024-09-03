@@ -12,9 +12,24 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../services/firebase";
 import { IoIosLogOut } from "react-icons/io";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
-const Header = () => {
+interface HeaderProps {
+  onSearch?: (term: string) => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   const [user] = useAuthState(auth);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newSearchTerm = event.target.value;
+    setSearchTerm(newSearchTerm);
+    if (onSearch) {
+      onSearch(newSearchTerm);
+    }
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.containerContact}>
@@ -100,9 +115,18 @@ const Header = () => {
           </button>
         </div>
         <div className={styles.login}>
-          <i className={styles.loginIcon}>
-            <FaSearch />
-          </i>
+          <div className={styles.searchInput}>
+            <input
+              type="text"
+              placeholder="Type anything..."
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+            <i className={styles.searchIcon}>
+              <FaSearch />
+            </i>
+          </div>
+
           <i className={styles.loginIcon}>
             {user ? (
               <p className={styles.clickableTextLogin}>

@@ -155,3 +155,27 @@
 .activeLink .clickableText {
     color: #FF6347; 
   }
+
+  .searchInput {
+    position: relative;
+    margin: 0.9rem;
+  }
+  
+  .searchInput input {
+    font-size: 18px;
+    padding: 0.4rem;
+    padding-right: 2.5rem; 
+    width: 100%; 
+    border: 1px solid #363D5A;
+    border-radius: 6px;
+    color: #363D5A;
+}
+  
+  .searchIcon {
+    position: absolute;
+    top: 50%; 
+    right: 1rem; 
+    transform: translateY(-40%); 
+    pointer-events: none; 
+    font-size: 20px; 
+}
