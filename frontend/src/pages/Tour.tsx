@@ -69,6 +69,7 @@ const Tour = () => {
   );
   const [selectedGrades, setSelectedGrades] = useState<number[]>([]);
   const [sortBy, setSortBy] = useState<string>("select");
+  const [searchTerm, setSearchTerm] = useState("");
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentTours = filteredTours.slice(indexOfFirstItem, indexOfLastItem);
@@ -92,6 +93,7 @@ const Tour = () => {
     selectedDestinations,
     price,
     sortBy,
+    searchTerm,
   ]);
 
   const renderPageNumbers = () => {
@@ -192,6 +194,12 @@ const Tour = () => {
       filtered.sort((a, b) => a.price - b.price);
     }
 
+    if (searchTerm) {
+      filtered = filtered.filter((tour) =>
+        tour.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
     setFilteredTours(filtered);
   };
 
@@ -230,7 +238,12 @@ const Tour = () => {
           <div className={styles.searchBox}>
             <label htmlFor="">Search</label>
             <div className={styles.searchInput}>
-              <input type="text" placeholder="Type anything..." />
+              <input
+                type="text"
+                placeholder="Type anything..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
               <i className={styles.searchIcon}>
                 <CiSearch />
               </i>
