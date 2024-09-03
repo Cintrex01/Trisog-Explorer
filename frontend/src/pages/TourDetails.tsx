@@ -41,7 +41,6 @@ const TourDetails = () => {
     },
     spaceBetween: 50,
     slidesPerView: 4,
-    /* navigation: true, */
     pagination: {
       clickable: true,
     },

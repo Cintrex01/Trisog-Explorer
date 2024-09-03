@@ -2,7 +2,6 @@ import { RequestHandler } from "express";
 
 import Tour, {TourModel} from "../models/tours";
 
-
 export const createTour: RequestHandler = async (req, res, next) => {
     const data: TourModel = req.body;
     try {

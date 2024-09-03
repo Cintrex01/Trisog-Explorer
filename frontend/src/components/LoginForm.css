@@ -109,10 +109,6 @@
   font-size: 0.9rem;
 }
 
-/* a:hover {
-  color: #07871a;
-} */
-
 .googleButton {
   background-color: #4184f3;
   display: flex;
@@ -161,10 +157,4 @@
 #login-form {
   display: flex;
   flex-direction: column;
-}
-
-@media (width < 490px) {
-  .signInContainer {
-    width: 90%;
-  }
 }

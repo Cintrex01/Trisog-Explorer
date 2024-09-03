@@ -60,7 +60,6 @@ const Home = () => {
     },
     spaceBetween: 50,
     slidesPerView: 4,
-    /* navigation: true, */
     pagination: {
       clickable: true,
     },
@@ -72,7 +71,6 @@ const Home = () => {
     },
     spaceBetween: 50,
     slidesPerView: 6,
-    /* navigation: true, */
     pagination: {
       clickable: true,
     },

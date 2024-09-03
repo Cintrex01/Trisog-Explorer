@@ -6,7 +6,7 @@ import {
   doCreateUserWithEmailAndPassword,
   doSignInWithFacebook,
 } from "../services/auth";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../contexts/authContext";
 import { FirebaseError } from "firebase/app";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
