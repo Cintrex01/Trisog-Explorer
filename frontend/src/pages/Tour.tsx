@@ -306,7 +306,7 @@ const Tour = () => {
         </div>
         <div className={styles.pagColumn}>
           <div className={styles.sort}>
-            <p>{currentTours.length} tours</p>
+            <p>{filteredTours.length} tours</p>
             <div>
               <p>
                 Sort by{" "}
